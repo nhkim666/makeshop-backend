@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="메이크샵 | 개발 (백엔드 개발) | 서울 가산(우림)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="[메이크샵] Backend Engineer | 커넥트웨이브">
+<meta property="og:description" content="메이크샵 | 개발 (백엔드 개발) | 서울 가산(우림)">
+<meta property="og:image" content="https://image.ninehire.com/brand/334be750-8ab9-11ef-afbb-b1dd1cf8a5b0/7a236850-9463-11f1-8588-dd6aa75f5f81.jpg">
+<meta property="og:locale" content="ko_KR">
+<title>[메이크샵] Backend Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+body { margin: 0; }
+img { max-width: 100%; }
+/* Layout: 채용공고 문서 — 왼쪽 본문 컬럼 + 오른쪽 고정 요약표, 모바일에서는 요약표가 상단으로 */
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --fg: #16191f;
+  --muted: #5a6170;
+  --line: #e1e4ea;
+  --accent: #1f5bd8;
+  --accent-soft: #e8eefc;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111318; --surface: #191c23; --fg: #e8eaef; --muted: #9aa1b0;
+    --line: #2b2f39; --accent: #7aa2ff; --accent-soft: #1e2840; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111318; --surface: #191c23; --fg: #e8eaef; --muted: #9aa1b0;
+  --line: #2b2f39; --accent: #7aa2ff; --accent-soft: #1e2840; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.75;
+  word-break: keep-all; overflow-wrap: anywhere;
+}
+.wrap {
+  max-width: 1040px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 72px;
+}
+header.top { display: grid; gap: 10px; padding-bottom: 32px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+.company { font-family: var(--font-mono); font-size: 13px; letter-spacing: .06em; color: var(--accent); text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(28px, 5vw, 40px); line-height: 1.25; font-weight: 700; text-wrap: balance; letter-spacing: -.01em; }
+.sub { color: var(--muted); font-size: 15px; }
+
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 56px; align-items: start; }
+@media (max-width: 820px) { .grid { grid-template-columns: 1fr; gap: 32px; } .summary { order: -1; position: static !important; } }
+
+.summary {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px;
+}
+.summary dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; font-size: 14px; }
+.summary dt { color: var(--muted); font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; padding-top: 2px; }
+.summary dd { margin: 0; font-weight: 500; }
+.summary .contact { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+.mail { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mail code { font-family: var(--font-mono); font-size: 13px; color: var(--fg); user-select: all; }
+.copy {
+  font: inherit; font-size: 12px; padding: 2px 10px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+}
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+.copy.pin { border: none; background: none; color: var(--accent); padding: 2px 4px; line-height: 0; display: inline-flex; align-items: center; font-size: 12px; }
+.copy.pin:hover { opacity: .75; }
+dd .mail { gap: 4px; }
+.copy:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+article { min-width: 0; display: grid; gap: 44px; }
+article section { display: grid; gap: 12px; }
+h2 { margin: 0; font-size: 19px; font-weight: 700; line-height: 1.4; }
+p { margin: 0; max-width: 68ch; }
+.intro p + p { margin-top: 12px; }
+.intro .lead { font-size: 18px; font-weight: 600; line-height: 1.6; }
+strong { font-weight: 600; }
+
+ul.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 68ch; }
+ul.list li { position: relative; padding-left: 18px; }
+ul.list li::before { content: ""; position: absolute; left: 2px; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+ul.list.req li { font-weight: 500; }
+
+.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.steps li { display: flex; align-items: center; gap: 8px; }
+.steps .s { background: var(--accent-soft); color: var(--fg); padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.steps .s.last { background: var(--accent); color: var(--bg); }
+.steps .arrow { color: var(--muted); font-size: 13px; }
+.note { font-size: 14px; color: var(--muted); }
+.notes { display: grid; gap: 4px; }
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.more { border-top: 1px solid var(--line); padding-top: 32px; }
+.more ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 15px; }
+footer { margin-top: 56px; font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="company">ConnectWave · MakeShop</div>
+    <h1>[메이크샵] Backend Engineer</h1>
+    <div class="sub">메이크샵 | 개발 (백엔드 개발) | 서울 가산(우림)</div>
+  </header>
+
+  <div class="grid">
+    <article>
+      <section class="intro">
+        <p class="lead">차세대 플랫폼으로 편리함 을 넘어 무한한 가능성을 찾아 진화하고 있는, "커넥트웨이브" 입니다.</p>
+        <p>커넥트웨이브는 고객과 셀러의 연결성 강화를 위해 다양한 플랫폼을 인수합병(M&amp;A) 하여 성장해 왔습니다. 빅데이터를 기반으로 한 <strong>컨슈머 커머스</strong>(다나와, 에누리), 쇼핑몰 구축부터 연동, 운영 등 원스톱 서비스가 가능한 <strong>셀러 커머스</strong>(메이크샵, 플레이오토, 링크프라이스, 스윗트래커), 글로벌 풀필먼트 서비스가 강점인 <strong>크로스보더 커머스</strong>(몰테일)를 선보이며 일상 속 편리한 토탈 플랫폼으로 거듭나고 있습니다. 플랫폼을 현대적 아키텍처로 업그레이드해 나갈 것 입니다.</p>
+      </section>
+
+      <section>
+        <h2>근무 부서</h2>
+        <ul class="list">
+          <li>커넥트웨이브 - 메이크샵 사업부 - 팀 미정</li>
+          <li>직책: 팀원</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>함께 할 동료에게 보내는 메시지</h2>
+        <ul class="list">
+          <li>메이크샵은 자사몰 제작부터 주문·결제·정산까지 커머스 운영 전반을 지원하는 쇼핑몰 솔루션으로, 최근 AI 커머스와 글로벌 D2C로 사업을 확장하고 있습니다.</li>
+          <li>이 포지션에 합류하시면 기획부터 배포까지 전 과정을 하나의 워크플로우로 묶어 개발 속도를 끌어올리며 AI 기반 개발 환경을 만들어 가는 과정에 초기부터 함께하실 수 있습니다.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>합류 시 함께 하게 될 업무에요</h2>
+        <ul class="list req">
+          <li>신규 기능 개발 및 기존 기능 고도화</li>
+          <li>유지보수 및 운영 기술 지원</li>
+          <li>서비스 성능 최적화 및 안정성 개선</li>
+          <li>사용자 요구사항 분석 및 서비스 개선 과제 수행</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>저희는 이런 분과 함께 하고 싶어요</h2>
+        <ul class="list req">
+          <li>경력 : 웹 서비스 개발 경력을 3년 이상 보유하신 분</li>
+          <li>Laravel, Node.js, NestJS 등 백엔드 프레임워크 활용한 경험을 보유하신 분</li>
+          <li>API 설계 및 외부 시스템 연동 개발 경험을 보유하신 분</li>
+          <li>RDBMS 기반 데이터 설계 및 SQL 활용 능력을 보유하신 분</li>
+          <li>이커머스·전자상거래 플랫폼 및 SaaS 서비스 개발 경험을 보유하신 분</li>
+          <li>Git 기반 협업 개발 및 코드 품질 관리 경험을 보유하신 분</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>다음과 같은 자격을 갖고 계시면 더욱 좋아요</h2>
+        <ul class="list">
+          <li>대규모 트래픽 서비스 개발 및 성능 최적화 경험을 보유하신 분</li>
+          <li>웹 애플리케이션 구조 및 백엔드 개발에 대한 이해를 보유하신 분</li>
+          <li>PHP 기반의 웹서비스 개발 경험을 보유하신 분</li>
+          <li>React, Next.js, TypeScript 등 모던 웹 기술 활용 경험을 보유하신 분</li>
+          <li>테스트 자동화 및 CI/CD 기반 개발 환경 경험을 보유하신 분</li>
+          <li>Claude Code, Codex, Cursor 등 AI 개발 도구 활용 경험을 보유하신 분</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>근무 형태</h2>
+        <ul class="list">
+          <li>고용형태: <strong>정규직</strong></li>
+          <li><strong>수습기간:</strong> 3개월 (급여 100% 지급)</li>
+          <li><strong>문의:</strong> cwrecruit@cowave.kr (채용팀)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>채용 절차</h2>
+        <ol class="steps">
+          <li><span class="s">서류 전형</span><span class="arrow" aria-hidden="true">→</span></li>
+          <li><span class="s">역량 검사</span><span class="arrow" aria-hidden="true">→</span></li>
+          <li><span class="s">1차 면접</span><span class="arrow" aria-hidden="true">→</span></li>
+          <li><span class="s">2차 면접</span><span class="arrow" aria-hidden="true">→</span></li>
+          <li><span class="s">처우 협의</span><span class="arrow" aria-hidden="true">→</span></li>
+          <li><span class="s last">최종합격 🎉</span></li>
+        </ol>
+        <div class="notes">
+          <p class="note">* 면접은 대면으로 2회 진행되며, 추가 면접이 필요할 경우 사전에 안내드리고 있어요.</p>
+          <p class="note">* 역량 검사와 면접 전형이 동시에 진행될 수 있어요.</p>
+        </div>
+        <ul class="list">
+          <li><strong>면접 종료 후, 평판조회가 진행될 수 있으며, 진행 시 사전에 안내드릴 예정입니다.</strong></li>
+          <li><a href="https://connectwave.ninehire.site/process" target="_blank" rel="noopener">커넥트웨이브 그룹사 채용프로세스 안내 바로가기</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>유의 사항</h2>
+        <ul class="list">
+          <li>입사 지원 시 <strong>"자유양식" 의 이력서</strong>를 첨부해주세요. 파일 형태는 어떤 형태로 지원하셔도 무방해요! (PDF/Word/hwp등)</li>
+          <li>이력서는 지원하시는 포지션과 <strong>관련된 경력 및 경험을 기반</strong>으로 작성해주세요.</li>
+          <li>커넥트웨이브는 모든 지원자 분들께 전형 결과를 전달드리고 있어요. 조금만 기다려주시면 모집 전형에 대한 결과를 개별 안내드릴 예정이에요.</li>
+          <li>면접 관련 상세한 진행 방법에 대해서는 서류 전형 합격 시 개별 안내드릴 예정이에요.</li>
+        </ul>
+      </section>
+
+      <section class="more">
+        <h2>커넥트웨이브에 대해 더 알고 싶으신가요?</h2>
+        <ul>
+          <li><a href="https://connectwave.ninehire.site/" target="_blank" rel="noopener">진행 중인 채용공고 모두보기</a></li>
+          <li><a href="https://connectwave.ninehire.site/welfare" target="_blank" rel="noopener">커넥트웨이브 복리후생 살펴보기</a></li>
+          <li><a href="https://connectwave.co.kr/" target="_blank" rel="noopener">커넥트웨이브 홈페이지 바로가기</a></li>
+        </ul>
+      </section>
+    </article>
+
+    <aside class="summary" aria-label="공고 요약">
+      <dl>
+        <dt>소속</dt><dd>메이크샵</dd>
+        <dt>직군</dt><dd>개발</dd>
+        <dt>직무</dt><dd>백엔드 개발</dd>
+        <dt>고용 형태</dt><dd>정규직</dd>
+        <dt>접수 기간</dt><dd>상시 모집</dd>
+        <dt>근무지</dt><dd><span class="mail">서울 가산(우림)<button class="copy pin" type="button" data-copy="대한민국 서울특별시 금천구 가산디지털1로 168 우림라이온스벨리 A동 1401호, 1412호" aria-label="근무지 주소 복사" title="주소 복사"><svg width="14" height="16" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 0C3.13 0 0 3.13 0 7c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7z" fill="currentColor"/><circle cx="7" cy="7" r="2.6" fill="var(--surface)"/></svg></button></span></dd>
+      </dl>
+      <div class="contact">
+        <span>이력서 제출처</span>
+        <div class="mail"><code>cwrecruit@cowave.kr</code><button class="copy" type="button" data-copy="cwrecruit@cowave.kr" aria-label="이메일 주소 복사">복사</button></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>© ConnectWave 채용팀</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy[data-copy]').forEach(function (btn) {
+  var label = btn.innerHTML;
+  btn.addEventListener('click', function () {
+    var text = btn.getAttribute('data-copy');
+    function done(){ btn.textContent = '복사됨'; setTimeout(function(){ btn.innerHTML = label; }, 1500); }
+    function fallback(){
+      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); if (ok) done(); else window.getSelection && btn.blur();
+    }
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+});
+</script>
+</body>
+</html>
